@@ -165,3 +165,24 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTimer, 1000);
     updateTimer();
 });
+const btnShare = document.getElementById('btn-share');
+
+if (btnShare) {
+    btnShare.addEventListener('click', async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'Nosso Presente Especial ❤️',
+                    text: 'Olha só o que eu preparei para nós!',
+                    url: window.location.href
+                });
+            } catch (err) {
+                console.log('Erro ao compartilhar:', err);
+            }
+        } else {
+            // Fallback caso o navegador não suporte (copiar link)
+            navigator.clipboard.writeText(window.location.href);
+            alert('Link copiado para a área de transferência!');
+        }
+    });
+}

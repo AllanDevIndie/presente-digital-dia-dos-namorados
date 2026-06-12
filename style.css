@@ -262,3 +262,24 @@ footer {
     padding: 40px 0;
     color: var(--text-secondary);
 }
+
+.share-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.share-btn {
+    background-color: #25d366; /* Verde WhatsApp */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.share-btn:hover {
+    transform: scale(1.05);
+}
