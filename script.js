@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const playlist = [
         'carta-branca-flavio-ferrari-voce-tem-carta-branca-nesse-meu-coracao.mp3',
         'juanes-para-tu-amor.mp3',
-        'amor-i-love-you.mp3'
+        'amor-i-love-you.mp3',
+        'fly-me-to-the-moon-por-lorenza-pozza.mp3'
     ];
 
     let currentIndex = 0;
