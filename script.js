@@ -5,30 +5,137 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnReveal = document.getElementById('btn-reveal');
     const specialMessage = document.getElementById('special-message');
     const playPauseBtn = document.getElementById('play-pause');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const btnShuffle = document.getElementById('btn-shuffle');
+    const btnRepeat = document.getElementById('btn-repeat');
     const music = document.getElementById('background-music');
+    const musicTitle = document.getElementById('music-title');
+    const musicArtist = document.getElementById('music-artist');
+    const progressBar = document.querySelector('.progress');
+    const currentTimeLabel = document.querySelector('.time span:first-child');
+    const remainingTimeLabel = document.querySelector('.time span:last-child');
 
-    // Troca de tela
+    // Playlist de músicas.
+    // Para adicionar novas músicas, coloque o arquivo em assets/music e adicione o nome aqui.
+    // Extensões recomendadas: .mp3, .ogg, .wav. O mais compatível para web é .mp3.
+    const playlist = [
+        'ytmp3free.cc_carta-branca-flavio-ferrari-voce-tem-carta-branca-nesse-meu-coraao-youtubemp3free.org.mp3',
+        'ytmp3free.cc_juanes-para-tu-amor-youtubemp3free.org.mp3',
+        'videoplayback.mp3'
+    ];
+
+    let currentIndex = 0;
+    let isShuffle = false;
+    let isRepeat = false;
+
+    function formatTitle(filename) {
+        const name = filename.replace(/\.[^/.]+$/, '');
+        return name.replace(/[-_]/g, ' ').replace(/^.*\//, '');
+    }
+
+    function updateTrackInfo() {
+        const fileName = playlist[currentIndex];
+        music.src = `assets/music/${fileName}`;
+        musicTitle.textContent = formatTitle(fileName);
+        musicArtist.textContent = 'Nossa playlist';
+    }
+
+    function updateButtons() {
+        btnShuffle.classList.toggle('active', isShuffle);
+        btnRepeat.classList.toggle('active', isRepeat);
+    }
+
+    function formatTime(time) {
+        if (isNaN(time) || time === Infinity) return '0:00';
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+        return `${minutes}:${seconds}`;
+    }
+
+    function updateProgress() {
+        if (!music.duration) return;
+        const percent = (music.currentTime / music.duration) * 100;
+        progressBar.style.width = `${percent}%`;
+        currentTimeLabel.textContent = formatTime(music.currentTime);
+        remainingTimeLabel.textContent = `-${formatTime(music.duration - music.currentTime)}`;
+    }
+
+    function playTrack() {
+        music.play().catch(() => {
+            console.log('Música aguardando interação do usuário');
+        });
+        playPauseBtn.textContent = '⏸';
+    }
+
+    function pauseTrack() {
+        music.pause();
+        playPauseBtn.textContent = '▶';
+    }
+
+    function setTrack(index) {
+        currentIndex = (index + playlist.length) % playlist.length;
+        updateTrackInfo();
+    }
+
+    function nextTrack() {
+        if (isShuffle) {
+            let nextIndex = Math.floor(Math.random() * playlist.length);
+            if (playlist.length > 1) {
+                while (nextIndex === currentIndex) {
+                    nextIndex = Math.floor(Math.random() * playlist.length);
+                }
+            }
+            setTrack(nextIndex);
+        } else {
+            setTrack(currentIndex + 1);
+        }
+        playTrack();
+    }
+
+    function prevTrack() {
+        setTrack(currentIndex - 1);
+        playTrack();
+    }
+
     btnStart.addEventListener('click', () => {
         landingScreen.classList.remove('active');
         mainContent.classList.add('active');
-        // Tentar dar play na música (pode ser bloqueado pelo navegador até interação)
-        music.play().catch(e => console.log("Música aguardando interação"));
+        updateTrackInfo();
+        playTrack();
     });
 
-    // Revelar mensagem
     btnReveal.addEventListener('click', () => {
         specialMessage.classList.remove('blurred');
         btnReveal.style.display = 'none';
     });
 
-    // Controle de música simples
     playPauseBtn.addEventListener('click', () => {
         if (music.paused) {
-            music.play();
-            playPauseBtn.textContent = '⏸';
+            playTrack();
         } else {
-            music.pause();
-            playPauseBtn.textContent = '▶';
+            pauseTrack();
+        }
+    });
+
+    btnPrev.addEventListener('click', prevTrack);
+    btnNext.addEventListener('click', nextTrack);
+    btnShuffle.addEventListener('click', () => {
+        isShuffle = !isShuffle;
+        updateButtons();
+    });
+    btnRepeat.addEventListener('click', () => {
+        isRepeat = !isRepeat;
+        updateButtons();
+    });
+
+    music.addEventListener('timeupdate', updateProgress);
+
+    music.addEventListener('ended', () => {
+        if (isRepeat) {
+            playTrack();
+        } else {
+            nextTrack();
         }
     });
 
