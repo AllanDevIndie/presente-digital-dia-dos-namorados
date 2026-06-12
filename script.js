@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Para adicionar novas músicas, coloque o arquivo em assets/music e adicione o nome aqui.
     // Extensões recomendadas: .mp3, .ogg, .wav. O mais compatível para web é .mp3.
     const playlist = [
-        'ytmp3free.cc_carta-branca-flavio-ferrari-voce-tem-carta-branca-nesse-meu-coraao-youtubemp3free.org.mp3',
-        'ytmp3free.cc_juanes-para-tu-amor-youtubemp3free.org.mp3',
-        'videoplayback.mp3'
+        'carta-branca-flavio-ferrari-voce-tem-carta-branca-nesse-meu-coracao.mp3',
+        'juanes-para-tu-amor.mp3',
+        'amor-i-love-you.mp3'
     ];
 
     let currentIndex = 0;
