@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Presente Especial ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts para um visual moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tela de Entrada (Landing) -->
+    <div id="landing-screen" class="screen active">
+        <div class="landing-content">
+            <h1>Allan preparou um<br><span>presente especial!</span></h1>
+            <p>Um momento único feito com carinho para celebrar a jornada de vocês</p>
+            <button id="btn-start">Ver Presente</button>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content" class="screen">
+        <header>
+            <p class="top-text">Juntos para sempre ❤️</p>
+        </header>
+
+        <!-- Player de Música (Estilo Spotify) -->
+        <section class="music-player">
+            <div class="album-art">
+                <img src="assets/images/capa-musica.jpg" alt="Capa do Álbum" id="music-img">
+            </div>
+            <div class="music-info">
+                <h2 id="music-title">Nossa Música</h2>
+                <p id="music-artist">Artista</p>
+            </div>
+            <div class="player-controls">
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <div class="time">
+                    <span>0:00</span>
+                    <span>-3:45</span>
+                </div>
+                <div class="controls">
+                    <button class="icon">🔀</button>
+                    <button class="icon">⏮</button>
+                    <button id="play-pause" class="play-btn">▶</button>
+                    <button class="icon">⏭</button>
+                    <button class="icon">🔁</button>
+                </div>
+            </div>
+            <audio id="background-music" src="assets/music/musica.mp3"></audio>
+        </section>
+
+        <!-- Contador de Tempo -->
+        <section class="counter-section">
+            <h3>Sobre o casal</h3>
+            <div class="couple-names">Allan Albuquerque & Maria Eduarda</div>
+            <p>Juntos desde 16 de Dezembro de 2018 (Se não me engano)</p>
+            <div class="countdown" id="timer">
+                <div class="time-block">
+                    <span id="years">0</span>
+                    <label>Anos</label>
+                </div>
+                <div class="time-block">
+                    <span id="months">0</span>
+                    <label>Meses</label>
+                </div>
+                <div class="time-block">
+                    <span id="days">0</span>
+                    <label>Dias</label>
+                </div>
+                <div class="time-block">
+                    <span id="hours">0</span>
+                    <label>Horas</label>
+                </div>
+                <div class="time-block">
+                    <span id="minutes">0</span>
+                    <label>Minutos</label>
+                </div>
+                <div class="time-block">
+                    <span id="seconds">0</span>
+                    <label>Segundos</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mensagem Especial -->
+        <section class="message-section">
+            <div class="message-card">
+                <h3>Mensagem especial</h3>
+                <div class="message-content blurred" id="special-message">
+                    <p>"Cada momento ao seu lado é um presente que guardo no coração. Que este gesto simples carregue todo o amor que sinto por você, hoje e sempre.".. ✨</p>
+                    <p>""Meu amor, cada capítulo da nossa história é escrito com carinho, cumplicidade e sonhos compartilhados.
+                        Você é minha inspiração diária, a razão dos meus sorrisos e a certeza de que o melhor da vida é estar ao seu lado.
+                        Que este presente seja apenas um reflexo do que sinto: um amor que cresce, se fortalece e se renova a cada".</p>
+                </div>
+                <button id="btn-reveal">Mostrar Mensagem</button>
+            </div>
+        </section>
+
+        <!-- Galeria de Fotos -->
+        <section class="gallery-section">
+            <h3>Nossa Galeria</h3>
+            <div class="photo-grid">
+                <div class="photo-item"><img src="assets/images/foto1.jpg" alt="Momento 1"></div>
+                <div class="photo-item"><img src="assets/images/foto2.jpg" alt="Momento 2"></div>
+                <div class="photo-item"><img src="assets/images/foto3.jpg" alt="Momento 3"></div>
+                <div class="photo-item"><img src="assets/images/foto4.jpg" alt="Momento 4"></div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Feito com amor por Allan para Maria Eduarda ❤️</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
